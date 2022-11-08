@@ -1,19 +1,29 @@
+:root {
+    --white: #FFFFFF;
+}
+
 .card-body {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: .2s;
-    background: #FFFFFF;
-    border: 0.5px solid #CDCDCD;
+    background: var(--white);
+    border: 0.5px solid #cdcdcd8c;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 11px;
+    transition: .2s;
 }
 
-.card-body:hover{
-    border: 0.5px solid #ED5517;
+.card-body:hover {
+    box-shadow: 5px 5px 25px #d1d1d1,
+        -5px -5px 25px var(--white);
 }
 
-.card-body.done{
+.card-body.active {
+    border: 1px solid #ED5517;
+}
+
+.card-body.done {
     border: 1px solid #0A0A0C;
 }

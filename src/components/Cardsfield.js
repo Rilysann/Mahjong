@@ -12,7 +12,7 @@ export default function Cards() {
             arr.push(randomNum);
         }
 
-        arr = arr.map((el, idx) => { return { id: idx+1, value: el, status: 'active'} })
+        arr = arr.map((el, idx) => { return { id: idx+1, value: el, status: 'preview'} })
         return arr.concat(arr).sort(() => Math.random() - 0.5)
     }
 
@@ -25,7 +25,7 @@ export default function Cards() {
     }, [])
 
     const cardClick = (id, k) => {
-        if (values[k]['status'] !== 'active' && values[k]['status'] !== 'done' && values.filter(x => x.status !== 'active').length !== values.length - 2) {
+        if (values[k]['status'] !== 'active' && values[k]['status'] !== 'preview' && values[k]['status'] !== 'done' && values.filter(x => x.status !== 'active').length !== values.length - 2) {
             if (!currentValue) {
                 setValues(values.map((x, i) => { return i == k ? { ...x, status: 'active' } : x }));
                 setCurrentValue(id);
