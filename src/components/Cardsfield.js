@@ -1,51 +1,59 @@
 import React, { useEffect, useState } from "react";
 import './Cardsfield.css';
 import Card from "./Card";
+import arrayGeneration from "../utils/arrayGeneration";
 
-export default function Cards() {
-    function arrInit() {
-        let arr = [];
+export default function Cardsfield() {
+    let initialArray = arrayGeneration();
+    initialArray = initialArray.map((el, idx) => { return { id: idx, value: el, status: 'preview' } });
 
-        while (arr.length < 16) {
-            let randomNum = Math.floor(Math.random() * 100) + 1;
-            if (arr.includes(randomNum)) continue;
-            arr.push(randomNum);
-        }
-
-        arr = arr.map((el, idx) => { return { id: idx+1, value: el, status: 'preview'} })
-        return arr.concat(arr).sort(() => Math.random() - 0.5)
-    }
-
-    const [values, setValues] = useState(arrInit());
+    const [values, setValues] = useState(initialArray);
     const [currentValue, setCurrentValue] = useState(null)
     const [currentKey, setCurrentKey] = useState(null)
+    const [cardLock, setCardLock] = useState(false);
 
     useEffect(() => {
         setTimeout(() => setValues(values.map((x) => { return { ...x, status: 'passive' } })), 5000)
     }, [])
 
-    const cardClick = (id, k) => {
-        if (values[k]['status'] !== 'active' && values[k]['status'] !== 'preview' && values[k]['status'] !== 'done' && values.filter(x => x.status !== 'active').length !== values.length - 2) {
+    const initValue = (value, id) => {
+        setCurrentValue(value);
+        setCurrentKey(id)
+        setValues(values.map(x => x.id === id ? { ...x, status: 'active' } : x));
+    }
+
+    const toggleDone = (value) => {
+        setValues(values.map(x => x.value === value ? { ...x, status: 'done' } : x));
+        setCurrentValue(null);
+        setCurrentKey(null);
+    }
+
+    const resetValues = (id) => {
+        setValues(values.map(x => x.id === id ? { ...x, status: 'active' } : x));
+        setCardLock(true);
+        setTimeout(() => {
+            setCardLock(false);
+            setValues(values.map(x => x.status !== 'done' ? { ...x, status: 'passive' } : x));
+            setCurrentValue(null);
+            setCurrentKey(null);
+        }, 800);
+    }
+
+    const cardClick = (value, id, status) => {
+        if (status === 'passive' && !cardLock) {
             if (!currentValue) {
-                setValues(values.map((x, i) => { return i == k ? { ...x, status: 'active' } : x }));
-                setCurrentValue(id);
-                setCurrentKey(k);
-            } else if (currentValue == id && currentKey !== k) {
-                setValues(values.map((x) => { return x.id == id ? { ...x, status: 'done' } : x }))
-                setCurrentValue(null);
-                setCurrentKey(null);
-            } else if (k !== currentKey) {
-                setTimeout(() => setValues(values.map((x, i) => { return i == k ? { ...x, status: 'active' } : x })), 0);
-                setTimeout(() => setValues(values.map((x) => { return x.status !== 'done' ? { ...x, status: 'passive' } : x })), 700)
-                setCurrentValue(null);
-                setCurrentKey(null);
+                initValue(value, id);
+            } else if (value === currentValue && id !== currentKey) {
+                toggleDone(value);
+            } else {
+                resetValues(id);
             }
         }
     }
 
     return (
         <div className="cards-container">
-            {values.map((x, idx) => <Card ui={idx} key={idx} id={x.id} status={x.status} value={x.value} cardClick={cardClick} />)}
+            {values.map(x => <Card key={x.id} cardClick={cardClick} {...x} />)}
         </div>
     )
 }

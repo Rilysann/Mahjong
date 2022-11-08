@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './Card.css';
 
-function Card(props) {
-    const [status, setStatus] = useState(props.status);
-    const value = props.value;
-    const cardClass = ` ${props.status}`
-    
-
-    useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+function Card({status, value, id, cardClick}) {
+    const cardClass = ` ${status}`
 
     return (
-        <div className={'card-body'+cardClass} onClick={() => props.cardClick(props.id, props.ui)}>
+        <div className={'card-body'+cardClass} onClick={() => cardClick(value, id, status)}>
             {status !== 'passive' && <h1>{value}</h1>}
         </div>
     )
