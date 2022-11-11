@@ -16,6 +16,8 @@ export default function Cardsfield() {
         setTimeout(() => setValues(values.map((card) => { return { ...card, status: 'passive' } })), 5000)
     }, [])
 
+    const isPassive = (status) => status === 'passive' && !cardLock;
+
     const initValue = (value, id) => {
         setCurrentValue(value);
         setCurrentKey(id)
@@ -40,7 +42,7 @@ export default function Cardsfield() {
     }
 
     const cardClick = (value, id, status) => {
-        if (status === 'passive' && !cardLock) {
+        if (isPassive(status)) {
             if (!currentValue) {
                 initValue(value, id);
             } else if (value === currentValue && id !== currentKey) {
