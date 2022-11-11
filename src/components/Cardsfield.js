@@ -13,27 +13,27 @@ export default function Cardsfield() {
     const [cardLock, setCardLock] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => setValues(values.map((x) => { return { ...x, status: 'passive' } })), 5000)
+        setTimeout(() => setValues(values.map((card) => { return { ...card, status: 'passive' } })), 5000)
     }, [])
 
     const initValue = (value, id) => {
         setCurrentValue(value);
         setCurrentKey(id)
-        setValues(values.map(x => x.id === id ? { ...x, status: 'active' } : x));
+        setValues(values.map(card => card.id === id ? { ...card, status: 'active' } : card));
     }
 
     const toggleDone = (value) => {
-        setValues(values.map(x => x.value === value ? { ...x, status: 'done' } : x));
+        setValues(values.map(card => card.value === value ? { ...card, status: 'done' } : card));
         setCurrentValue(null);
         setCurrentKey(null);
     }
 
     const resetValues = (id) => {
-        setValues(values.map(x => x.id === id ? { ...x, status: 'active' } : x));
+        setValues(values.map(card => card.id === id ? { ...card, status: 'active' } : card));
         setCardLock(true);
         setTimeout(() => {
             setCardLock(false);
-            setValues(values.map(x => x.status !== 'done' ? { ...x, status: 'passive' } : x));
+            setValues(values.map(card => card.status !== 'done' ? { ...card, status: 'passive' } : card));
             setCurrentValue(null);
             setCurrentKey(null);
         }, 800);
@@ -53,7 +53,7 @@ export default function Cardsfield() {
 
     return (
         <div className="cards-container">
-            {values.map(x => <Card key={x.id} cardClick={cardClick} {...x} />)}
+            {values.map(card => <Card key={card.id} cardClick={cardClick} {...card} />)}
         </div>
     )
 }
