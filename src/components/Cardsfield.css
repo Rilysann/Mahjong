@@ -5,14 +5,12 @@ body {
 }
 
 .cards-container {
-    width: 845px;
-    height: 561px;
+    width: 840px;
     margin: auto;
-    margin-top: 68px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    grid-gap: 25px;
+    grid-gap: 15px;
     padding: 5px;
 }
 
@@ -20,4 +18,5 @@ body {
     text-align: center;
     font-size: 48px;
     margin-top: 48px;
+    margin-bottom: 108px;
 }

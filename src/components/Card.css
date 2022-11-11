@@ -17,6 +17,9 @@
     border-radius: 8px;
     font-size: 11px;
     transition: .2s;
+    width: 80px;
+    height: 104px;
+    margin: auto;
 }
 
 .card-body:hover {
@@ -30,4 +33,5 @@
 
 .card-body.done {
     border: 1px solid var(--black);
+    cursor: auto;
 }
