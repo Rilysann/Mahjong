@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import './Cardsfield.css';
-import Card from "./Card";
-import arrayGeneration from "../utils/arrayGeneration";
+import Card from './Card';
+import arrayGeneration from '../utils/arrayGeneration';
 
 export default function Cardsfield() {
     let initialArray = arrayGeneration();
