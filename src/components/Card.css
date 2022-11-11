@@ -1,5 +1,9 @@
 :root {
     --white: #FFFFFF;
+    --shadow: #d1d1d1;
+    --gray: #cdcdcd8c;
+    --orange: #ED5517;
+    --black: #0A0A0C;
 }
 
 .card-body {
@@ -9,21 +13,21 @@
     cursor: pointer;
     transition: .2s;
     background: var(--white);
-    border: 0.5px solid #cdcdcd8c;
+    border: 0.5px solid var(--gray);
     border-radius: 8px;
     font-size: 11px;
     transition: .2s;
 }
 
 .card-body:hover {
-    box-shadow: 5px 5px 25px #d1d1d1,
+    box-shadow: 5px 5px 25px var(--shadow),
         -5px -5px 25px var(--white);
 }
 
 .card-body.active {
-    border: 1px solid #ED5517;
+    border: 1px solid var(--orange);
 }
 
 .card-body.done {
-    border: 1px solid #0A0A0C;
+    border: 1px solid var(--black);
 }
