@@ -9,11 +9,9 @@ export default function arrayGeneration() {
         return true;
     }
 
-    for (let i = 2; i <= 60; i++) {
+    for (let i = 2; i <= 55; i++) {
         if (isPrime(i)) arr.push(i);
     }
-
-    arr[Math.floor(Math.random() * arr.length)] = 0;
 
     return arr.concat(arr).filter(x => x !== 0).sort(() => Math.random() - 0.5);
 }
