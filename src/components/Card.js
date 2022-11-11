@@ -5,7 +5,7 @@ function Card({status, value, id, cardClick}) {
     const cardClass = ` ${status}`
 
     return (
-        <div className={'card-body'+cardClass} onClick={() => cardClick(value, id, status)}>
+        <div className={'card-body' + cardClass} onClick={() => cardClick(value, id, status)}>
             {status !== 'passive' && <h1>{value}</h1>}
         </div>
     )
