@@ -1,19 +1,37 @@
+:root {
+    --white: #FFFFFF;
+    --shadow: #d1d1d1;
+    --gray: #cdcdcd8c;
+    --orange: #ED5517;
+    --black: #0A0A0C;
+}
+
 .card-body {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: .2s;
-    background: #FFFFFF;
-    border: 0.5px solid #CDCDCD;
+    background: var(--white);
+    border: 0.5px solid var(--gray);
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 11px;
+    transition: .2s;
+    width: 80px;
+    height: 104px;
+    margin: auto;
 }
 
-.card-body:hover{
-    border: 0.5px solid #ED5517;
+.card-body:hover {
+    box-shadow: 5px 5px 25px var(--shadow),
+        -5px -5px 25px var(--white);
 }
 
-.card-body.done{
-    border: 1px solid #0A0A0C;
+.card-body.active {
+    border: 1px solid var(--orange);
+}
+
+.card-body.done {
+    border: 1px solid var(--black);
+    cursor: auto;
 }
