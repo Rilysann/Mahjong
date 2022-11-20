@@ -1,7 +1,7 @@
 import React from 'react';
 import Cardsfield from "./components/Cardsfield";
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
       <h1 className="title">Mahjong</h1>

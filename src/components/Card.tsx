@@ -6,7 +6,7 @@ interface Props extends ICard {
     cardClick: (value: number, id: number, status: CardStatus) => void;
 }
 
-const Card: React.FC<Props> = ({status, value, id, cardClick}) => {
+const Card: React.FC<Props> = ({status, value, id, cardClick}): JSX.Element => {
     const cardClass: string = ` ${status}`;
 
     return (
