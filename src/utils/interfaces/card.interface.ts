@@ -4,7 +4,7 @@ export interface ICard {
     status: CardStatus;
 }
 
-enum CardStatus {
+export enum CardStatus {
     Preview = 'preview',
     Passive = 'passive',
     Active = 'active',
