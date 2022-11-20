@@ -1,7 +1,7 @@
 export default function arrayGeneration() {
-    let arr = [];
+    let arr: number[] = [];
 
-    function isPrime(x) {
+    function isPrime(x: number): boolean {
         for (let i = 2; i < x; i++) {
             if (x % i === 0) return false;
         }
