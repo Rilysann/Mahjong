@@ -5,7 +5,11 @@ import arrayGeneration from '../utils/arrayGeneration';
 import { ICard, CardStatus } from '../utils/interfaces/card.interface';
 
 export default function Cardsfield() {
-    let initialArray: ICard[] = arrayGeneration().map((el: number, idx: number) => { return { id: idx, value: el, status: CardStatus.Preview } });
+    let initialNums: Array<number> = arrayGeneration(),
+        initialArray: Array<ICard>;
+    
+    const cardInit = (el: number, idx: number): ICard => { return { id: idx, value: el, status: CardStatus.Preview } };
+    initialArray = initialNums.map(cardInit);
 
     const [values, setValues] = useState<ICard[]>(initialArray);
     const [currentValue, setCurrentValue] = useState<null | number>(null)
