@@ -11,7 +11,7 @@ const Card: React.FC<Props> = ({status, value, id, cardClick}): JSX.Element => {
 
     return (
         <div className={'card-body' + cardClass} onClick={() => cardClick(value, id, status)}>
-            {status !== 'passive' && <h1>{value}</h1>}
+            {status !== CardStatus.Passive && <h1>{value}</h1>}
         </div>
     )
 }
